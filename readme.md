@@ -1,3 +1,5 @@
+# Doing
+Spawn a copy of the instruction if the source one is dropped in the solution area.
 # Time range
 Sept 20th - Oct 4th (2.5 weeks)
 # MVP
