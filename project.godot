@@ -30,6 +30,10 @@ config/name="Human Resource Machine"
 run/main_scene="res://Scenes/Room.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+InstructionType="*res://Scripts/InstructionType.gd"
+
 [display]
 
 window/size/width=576

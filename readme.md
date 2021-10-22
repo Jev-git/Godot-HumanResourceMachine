@@ -1,4 +1,8 @@
 # Doing
+
+m_nInstructions
+m_aiIndices
+
 * All draggable instruction nodes should behave the same:
     * If dropped outside of the solution area, they will disappear
     * ~~If hovered over the solution area, create a placeholder~~
