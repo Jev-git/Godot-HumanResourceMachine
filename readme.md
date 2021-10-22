@@ -1,5 +1,8 @@
 # Doing
-Spawn a copy of the instruction if the source one is dropped in the solution area.
+* All draggable instruction nodes should behave the same:
+    * If dropped outside of the solution area, they will disappear
+    * ~~If hovered over the solution area, create a placeholder~~
+* The instruction sources should stay still: can just be a sprite, spawn an actually instruction node upon start dragging.
 # Time range
 Sept 20th - Oct 4th (2.5 weeks)
 # MVP

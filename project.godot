@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Instruction",
+"language": "GDScript",
+"path": "res://Scripts/Instruction.gd"
+}, {
+"base": "Area2D",
+"class": "SourceInstruction",
+"language": "GDScript",
+"path": "res://Scripts/SourceInstruction.gd"
+} ]
+_global_script_class_icons={
+"Instruction": "",
+"SourceInstruction": ""
+}
+
 [application]
 
 config/name="Human Resource Machine"

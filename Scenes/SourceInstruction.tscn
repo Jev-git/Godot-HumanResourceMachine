@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/SourceInstruction.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Instructions/Instruction.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 16 )
+
+[node name="SourceInstruction" type="Area2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+m_psInstruction = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 0.5 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Label" type="Label" parent="."]
+margin_right = 96.0
+margin_bottom = 32.0
+text = "INSTRUCTION"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 48, 16 )
+shape = SubResource( 1 )
+
+[node name="Preview" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Preview"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 0.5 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Label" type="Label" parent="Preview"]
+margin_right = 96.0
+margin_bottom = 32.0
+text = "INSTRUCTION"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

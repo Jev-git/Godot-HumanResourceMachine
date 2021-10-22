@@ -4,20 +4,29 @@
 [ext_resource path="res://Scripts/Instruction.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 48, 16 )
 
 [node name="Instruction" type="Area2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.5, 0.5 )
 texture = ExtResource( 1 )
+centered = false
+
+[node name="Label" type="Label" parent="."]
+margin_right = 96.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "INSTRUCTION"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2( 48, 16 )
 shape = SubResource( 1 )
-
-[node name="PreviewSprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )

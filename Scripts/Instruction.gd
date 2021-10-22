@@ -1,30 +1,28 @@
 extends Area2D
+class_name Instruction
 
 onready var m_bIsDragging: bool = false
 var m_vGrabOffset: Vector2
 
-onready var m_nPreviewSprite: Sprite = $PreviewSprite
-onready var m_nSolutionArea: Sprite = get_tree().get_nodes_in_group("SolutionArea")[0]
-var m_rSolutionAreaRect: Rect2
+onready var m_nSolutionArea: Node2D = get_tree().get_nodes_in_group("SolutionArea")[0]
 
-func _ready():
-	var vSolutionAreaSize: Vector2 = m_nSolutionArea.texture.get_size() * m_nSolutionArea.scale
-	var vSolutionAreaPos: Vector2 = m_nSolutionArea.position - vSolutionAreaSize / 2
-	m_rSolutionAreaRect = Rect2(vSolutionAreaPos, vSolutionAreaSize)
+signal dropped
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			m_bIsDragging = true
-			m_vGrabOffset = get_global_mouse_position() - global_position
+			m_vGrabOffset = get_global_mouse_position() - position
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if !event.is_pressed():
+		if !event.is_pressed() and m_bIsDragging:
 			m_bIsDragging = false
-			if !m_rSolutionAreaRect.has_point(get_global_mouse_position()):
-				m_nPreviewSprite.global_position = position
+			if !m_nSolutionArea.get_rect().has_point(get_global_mouse_position()):
+				queue_free()
+			else:
+				emit_signal("dropped")
 
 func _process(delta):
 	if m_bIsDragging:
-		m_nPreviewSprite.global_position = get_global_mouse_position() - m_vGrabOffset
+		position = get_global_mouse_position() - m_vGrabOffset
