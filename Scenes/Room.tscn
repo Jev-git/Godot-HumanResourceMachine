@@ -14,9 +14,9 @@ position = Vector2( 352, 176 )
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="SolutionArea"]
-modulate = Color( 0, 0.980392, 0.129412, 1 )
+modulate = Color( 0.643137, 0.45098, 0.152941, 1 )
 position = Vector2( -1.90735e-05, 0 )
-scale = Vector2( 3, 6.5 )
+scale = Vector2( 3, 11.25 )
 z_index = -10
 z_as_relative = false
 texture = ExtResource( 2 )
@@ -31,3 +31,13 @@ position = Vector2( 256, 176 )
 
 [node name="Outbox_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 1 )]
 position = Vector2( 0, 48 )
+
+[node name="RunButton" type="Button" parent="."]
+margin_left = 352.0
+margin_top = 928.0
+margin_right = 544.0
+margin_bottom = 976.0
+text = "RUN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
