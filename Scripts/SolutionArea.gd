@@ -11,22 +11,25 @@ var m_nDraggingInstruction: Instruction
 
 func _ready():
 	var vSolutionAreaSize: Vector2 = $Sprite.texture.get_size() * $Sprite.scale
-	var vSolutionAreaPos: Vector2 = position - vSolutionAreaSize / 2
+	var vSolutionAreaPos: Vector2 = position
 	m_rSolutionAreaRect = Rect2(vSolutionAreaPos, vSolutionAreaSize)
+	
+	print(vSolutionAreaPos)
+	print(vSolutionAreaPos + vSolutionAreaSize)
 	
 	for nSrcIns in m_nSourceInstructions.get_children():
 		nSrcIns.connect("started_dragging", self, "_on_source_instruction_started_dragging")
 		nSrcIns.connect("dropped", self, "_on_source_instruction_dropped")
 
 func _process(delta):
-	if m_nDraggingSourceInstruction or m_nDraggingInstruction:
-		var vMousePos: Vector2 = get_global_mouse_position()
-		if m_rSolutionAreaRect.has_point(vMousePos):
+	if m_rSolutionAreaRect.has_point(get_global_mouse_position()):
+		if m_nDraggingSourceInstruction or m_nDraggingInstruction:
 			for iInstruction in range(m_nInstructions.get_child_count()):
+				var nInstruction = m_nInstructions.get_child(iInstruction)
 				if iInstruction < _get_instruction_index_base_on_mouse_pos():
-					m_nInstructions.get_child(iInstruction).position.y = iInstruction * m_iSpaceBetweenInstructions
+					nInstruction.position.y = iInstruction * m_iSpaceBetweenInstructions
 				else:
-					m_nInstructions.get_child(iInstruction).position.y = (iInstruction + 1) * m_iSpaceBetweenInstructions
+					nInstruction.position.y = (iInstruction + 1) * m_iSpaceBetweenInstructions
 
 func _on_source_instruction_started_dragging(_nSourceInstruction: SourceInstruction):
 	m_nDraggingSourceInstruction = _nSourceInstruction
@@ -40,9 +43,15 @@ func _on_source_instruction_dropped():
 
 func _on_instruction_started_dragging(_nInstruction: Instruction):
 	m_nDraggingInstruction = _nInstruction
+	m_nInstructions.remove_child(_nInstruction)
+	add_child(_nInstruction)
 
 func _on_instruction_dropped():
-	if !m_rSolutionAreaRect.has_point(get_global_mouse_position()):
+	if m_rSolutionAreaRect.has_point(get_global_mouse_position()):
+		remove_child(m_nDraggingInstruction)
+		m_nInstructions.add_child(m_nDraggingInstruction)
+		m_nInstructions.move_child(m_nDraggingInstruction, _get_instruction_index_base_on_mouse_pos())
+	else:
 		m_nDraggingInstruction.queue_free()
 	m_nDraggingInstruction = null
 	_rearrange_all_instructions()

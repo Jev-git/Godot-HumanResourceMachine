@@ -10,7 +10,7 @@
 [node name="SolutionArea" type="Node2D" parent="." groups=[
 "SolutionArea",
 ]]
-position = Vector2( 448, 384 )
+position = Vector2( 352, 176 )
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="SolutionArea"]
@@ -20,9 +20,9 @@ scale = Vector2( 3, 6.5 )
 z_index = -10
 z_as_relative = false
 texture = ExtResource( 2 )
+centered = false
 
 [node name="Instructions" type="Node2D" parent="SolutionArea"]
-position = Vector2( -96, -208 )
 
 [node name="SourceInstructions" type="Node2D" parent="."]
 position = Vector2( 256, 176 )
