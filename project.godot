@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Box",
+"language": "GDScript",
+"path": "res://Scripts/Box.gd"
+}, {
 "base": "Area2D",
 "class": "Instruction",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/SourceInstruction.gd"
 } ]
 _global_script_class_icons={
+"Box": "",
 "Instruction": "",
 "SourceInstruction": ""
 }
@@ -28,11 +34,11 @@ _global_script_class_icons={
 
 config/name="Human Resource Machine"
 run/main_scene="res://Scenes/Room.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 
 InstructionType="*res://Scripts/InstructionType.gd"
+NodeUtil="*res://Scripts/NodeUtil.gd"
 
 [display]
 

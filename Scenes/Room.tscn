@@ -1,31 +1,38 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/SourceInstructions/Outbox_SourceInstruction.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/SolutionArea.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/SourceInstructions/Inbox_SourceInstruction.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/RunButton.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Solver.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Box.tscn" type="PackedScene" id=7]
 
 [node name="Room" type="Node2D"]
 
-[node name="SolutionArea" type="Node2D" parent="." groups=[
-"SolutionArea",
-]]
-position = Vector2( 352, 176 )
+[node name="Solver" type="Node2D" parent="."]
+script = ExtResource( 6 )
+m_psBox = ExtResource( 7 )
+
+[node name="SolutionArea" type="Node2D" parent="."]
+position = Vector2( 400, 16 )
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="SolutionArea"]
 modulate = Color( 0.643137, 0.45098, 0.152941, 1 )
 position = Vector2( -1.90735e-05, 0 )
-scale = Vector2( 3, 11.25 )
+scale = Vector2( 2.5, 14.25 )
 z_index = -10
 z_as_relative = false
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Instructions" type="Node2D" parent="SolutionArea"]
+[node name="Instructions" type="Node2D" parent="SolutionArea" groups=[
+"Instructions",
+]]
 
 [node name="SourceInstructions" type="Node2D" parent="."]
-position = Vector2( 256, 176 )
+position = Vector2( 304, 16 )
 
 [node name="Inbox_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 4 )]
 
@@ -33,11 +40,49 @@ position = Vector2( 256, 176 )
 position = Vector2( 0, 48 )
 
 [node name="RunButton" type="Button" parent="."]
-margin_left = 352.0
-margin_top = 928.0
-margin_right = 544.0
-margin_bottom = 976.0
+margin_left = 400.0
+margin_top = 960.0
+margin_right = 560.0
+margin_bottom = 1008.0
 text = "RUN"
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Floor" type="Node2D" parent="."]
+position = Vector2( 0, 384 )
+
+[node name="LeftConveyor" type="Node2D" parent="Floor"]
+
+[node name="Sprite" type="Sprite" parent="Floor/LeftConveyor"]
+modulate = Color( 0.160784, 0.0156863, 0.0156863, 1 )
+scale = Vector2( 1, 10 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Inputs" type="Node2D" parent="Floor/LeftConveyor" groups=[
+"LeftConveyor",
+]]
+
+[node name="RightConveyor" type="Node2D" parent="Floor"]
+position = Vector2( 320, 0 )
+
+[node name="Sprite" type="Sprite" parent="Floor/RightConveyor"]
+modulate = Color( 0.160784, 0.0156863, 0.0156863, 1 )
+scale = Vector2( 1, 10 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Outputs" type="Node2D" parent="Floor/RightConveyor" groups=[
+"RightConveyor",
+]]
+
+[node name="Player" type="Node2D" parent="." groups=[
+"Player",
+]]
+position = Vector2( 192, 416 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+modulate = Color( 0.113725, 0.415686, 0.0196078, 1 )
+texture = ExtResource( 2 )

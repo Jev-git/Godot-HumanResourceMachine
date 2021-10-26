@@ -14,9 +14,6 @@ func _ready():
 	var vSolutionAreaPos: Vector2 = position
 	m_rSolutionAreaRect = Rect2(vSolutionAreaPos, vSolutionAreaSize)
 	
-	print(vSolutionAreaPos)
-	print(vSolutionAreaPos + vSolutionAreaSize)
-	
 	for nSrcIns in m_nSourceInstructions.get_children():
 		nSrcIns.connect("started_dragging", self, "_on_source_instruction_started_dragging")
 		nSrcIns.connect("dropped", self, "_on_source_instruction_dropped")
