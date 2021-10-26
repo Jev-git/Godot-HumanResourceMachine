@@ -19,15 +19,27 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Instruction.gd"
 }, {
+"base": "Node2D",
+"class": "RandomSolver",
+"language": "GDScript",
+"path": "res://Scripts/RandomSolver.gd"
+}, {
 "base": "Area2D",
 "class": "SourceInstruction",
 "language": "GDScript",
 "path": "res://Scripts/SourceInstruction.gd"
+}, {
+"base": "Node2D",
+"class": "Verifier",
+"language": "GDScript",
+"path": "res://Scripts/Verifier.gd"
 } ]
 _global_script_class_icons={
 "Box": "",
 "Instruction": "",
-"SourceInstruction": ""
+"RandomSolver": "",
+"SourceInstruction": "",
+"Verifier": ""
 }
 
 [application]
