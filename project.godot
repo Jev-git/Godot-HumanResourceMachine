@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Instruction",
 "language": "GDScript",
-"path": "res://Scripts/Instruction.gd"
+"path": "res://Scripts/Instructions/Instruction.gd"
 }, {
 "base": "Node2D",
 "class": "RandomSolver",
@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "SourceInstruction",
 "language": "GDScript",
-"path": "res://Scripts/SourceInstruction.gd"
+"path": "res://Scripts/Instructions/SourceInstruction.gd"
 }, {
 "base": "Node2D",
 "class": "Verifier",
@@ -49,7 +49,7 @@ run/main_scene="res://Scenes/Room.tscn"
 
 [autoload]
 
-InstructionType="*res://Scripts/InstructionType.gd"
+InstructionType="*res://Scripts/Instructions/InstructionType.gd"
 NodeUtil="*res://Scripts/NodeUtil.gd"
 
 [display]

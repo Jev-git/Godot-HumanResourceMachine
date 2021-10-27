@@ -2,6 +2,9 @@ extends Area2D
 class_name Instruction
 
 export var m_iInstructionType: int
+export var m_bHasJumpTarget: bool = false
+var m_nJumpSource: Instruction
+var m_nJumpTarget: Instruction
 
 onready var m_bIsDragging: bool = false
 var m_vGrabOffset: Vector2

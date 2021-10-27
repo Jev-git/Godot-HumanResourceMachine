@@ -2,5 +2,7 @@ extends Node
 
 enum INSTRUCTION_TYPE {
 	INBOX,
-	OUTBOX
+	OUTBOX,
+	JUMP,
+	JUMP_TARGET
 }
