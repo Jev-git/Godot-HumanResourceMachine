@@ -19,7 +19,9 @@ func is_correct_solution(_iLevel: int) -> bool:
 		m_aiOutputs.clear()
 		m_bIsHoldingValue = false
 		
-		for nInstruction in m_nInstructions.get_children():
+		var iInstructionIndex: int = 0
+		while iInstructionIndex < m_nInstructions.get_child_count():
+			var nInstruction: Instruction = m_nInstructions.get_child(iInstructionIndex)
 			match nInstruction.m_iInstructionType:
 				InstructionType.INSTRUCTION_TYPE.INBOX:
 					if (get_next_input()):
@@ -27,6 +29,13 @@ func is_correct_solution(_iLevel: int) -> bool:
 				InstructionType.INSTRUCTION_TYPE.OUTBOX:
 					if (output_holding_value()):
 						return false
+					if m_nVerifier.is_correct_solution(_iLevel, m_aiOriginalInputs, m_aiOutputs):
+						return true
+				InstructionType.INSTRUCTION_TYPE.JUMP:
+					iInstructionIndex = nInstruction.m_nJumpTarget.get_index() - 1
+					continue
+			
+			iInstructionIndex += 1
 		
 		if !m_nVerifier.is_correct_solution(_iLevel, m_aiOriginalInputs, m_aiOutputs):
 			return false
