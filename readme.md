@@ -1,5 +1,6 @@
 # Doing
-* Level 7: inputs: random 4 + 4 zeros, outputs: 4 zeros
+* Add a level description node and according descriptions to the data loader node
+* Level 8: inputs random 4, output triple each input
 # Time range
 Sept 20th - Oct 4th (2.5 weeks)
 # MVP
@@ -13,7 +14,7 @@ Sept 20th - Oct 4th (2.5 weeks)
     * ~~Copyfrom~~
     * ~~Copyto~~
     * ~~Add~~
-    * Jump if zero
+    * ~~Jump if zero~~
     * Sub
 # Optional
 * Verify the solution against a set of random inputs

@@ -34,6 +34,23 @@ func is_correct_solution(_aiOutputs: Array) -> bool:
 				for iBox in range(_aiOutputs.size()):
 					if aiInputs[iBox * 2] + aiInputs[iBox * 2 + 1] != _aiOutputs[iBox]:
 						return false
+		7:
+			var iNonZeroCount: int = 0
+			for iInput in aiInputs:
+				if iInput != 0:
+					iNonZeroCount += 1
+			if iNonZeroCount != _aiOutputs.size():
+				return false
+			else:
+				var iInput: int = 0
+				var iOutput: int = 0
+				while iInput < aiInputs.size() and iOutput < _aiOutputs.size():
+					if aiInputs[iInput] != 0:
+						if aiInputs[iInput] == _aiOutputs[iOutput]:
+							iOutput += 1
+						else:
+							return false
+					iInput += 1
 		_:
 			print_debug("Level is not implemented")
 	return true

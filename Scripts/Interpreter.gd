@@ -43,7 +43,7 @@ func execute():
 					return
 			InstructionType.INSTRUCTION_TYPE.JUMP:
 				_set_instruction_pointer_index(m_iInstructionPointerIndex + 1)
-				_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index() - 1)
+				_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index() )
 				continue
 			InstructionType.INSTRUCTION_TYPE.COPY_FROM:
 				if (_execute_copy_from(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)):
@@ -54,6 +54,15 @@ func execute():
 			InstructionType.INSTRUCTION_TYPE.ADD:
 				if (_execute_add(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)):
 					return
+			InstructionType.INSTRUCTION_TYPE.JUMP_IF_ZERO:
+				if m_nPlayerHoldingBox.get_child_count() == 0:
+					emit_signal("error", "Not holding anything")
+					return
+				else:
+					var iHoldingValue: int = m_nPlayerHoldingBox.get_child(0).m_iValue
+					if iHoldingValue == 0:
+						_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index())
+						continue
 		
 		yield(get_tree().create_timer(0.5), "timeout")
 		_set_instruction_pointer_index(m_iInstructionPointerIndex + 1)

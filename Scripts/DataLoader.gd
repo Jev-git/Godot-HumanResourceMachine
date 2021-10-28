@@ -41,6 +41,11 @@ func _get_inputs(_iLevel: int) -> Array:
 		4, 6:
 			for __ in range(8):
 				aiInputs.append(randi() % 20)
+		7:
+			for __ in range(4):
+				aiInputs.append(randi() % 20)
+			for __ in range(4):
+				aiInputs.insert(randi() % aiInputs.size(), 0)
 		_:
 			print_debug("Level is not implemented")
 	return aiInputs
@@ -51,7 +56,7 @@ func _get_memory_data(_iLevel: int) -> Array:
 		3:
 			aiMemory = [0, 1, 2, 3, 4, 5]
 		4, 6:
-			aiMemory = [69, 69]
+			aiMemory = [69, 69, 69]
 		_:
 			print_debug("Level is not implemented")
 	return aiMemory
