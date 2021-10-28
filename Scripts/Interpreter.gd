@@ -33,9 +33,11 @@ func execute():
 		var nInstruction: Instruction = m_nInstructions.get_child(m_iInstructionPointerIndex)
 		match nInstruction.m_iInstructionType:
 			InstructionType.INSTRUCTION_TYPE.INBOX:
-				if (_execute_inbox()): return
+				if (_execute_inbox()):
+					return
 			InstructionType.INSTRUCTION_TYPE.OUTBOX:
-				if (_execute_outbox()): return
+				if (_execute_outbox()):
+					return
 				elif m_nVerifier.is_correct_solution(m_aiOutputs):
 					emit_signal("execution_finished", true)
 					return
@@ -44,9 +46,13 @@ func execute():
 				_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index() - 1)
 				continue
 			InstructionType.INSTRUCTION_TYPE.COPY_FROM:
-				_execute_copy_from(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)
+				if (_execute_copy_from(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)):
+					return
 			InstructionType.INSTRUCTION_TYPE.COPY_TO:
 				if (_execute_copy_to(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)):
+					return
+			InstructionType.INSTRUCTION_TYPE.ADD:
+				if (_execute_add(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)):
 					return
 		
 		yield(get_tree().create_timer(0.5), "timeout")
@@ -103,4 +109,17 @@ func _execute_copy_to(_iAddress: int) -> bool:
 		return true
 	else:
 		m_nMemoryFloor.get_child(_iAddress).set_value(m_nPlayerHoldingBox.get_child(0).m_iValue)
-	return false
+		return false
+
+func _execute_add(_iAddress: int) -> bool:
+	if m_nMemoryFloor.get_child_count() < _iAddress:
+		emit_signal("error", "Memory address out of bound")
+		return true
+	elif m_nPlayerHoldingBox.get_child_count() == 0:
+		emit_signal("error", "Can't add to nothing")
+		return true
+	else:
+		var iHoldingValue: int = m_nPlayerHoldingBox.get_child(0).m_iValue
+		var iFloorValue: int = m_nMemoryFloor.get_child(_iAddress).m_iValue
+		m_nPlayerHoldingBox.get_child(0).set_value(iHoldingValue + iFloorValue)
+		return false

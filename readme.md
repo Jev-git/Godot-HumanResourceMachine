@@ -1,5 +1,5 @@
 # Doing
-* Level 5: inputs: random 6, outputs: sum of each pair
+* Level 7: inputs: random 4 + 4 zeros, outputs: 4 zeros
 # Time range
 Sept 20th - Oct 4th (2.5 weeks)
 # MVP
@@ -12,7 +12,8 @@ Sept 20th - Oct 4th (2.5 weeks)
     * ~~Jump~~
     * ~~Copyfrom~~
     * ~~Copyto~~
-    * Add
+    * ~~Add~~
+    * Jump if zero
     * Sub
 # Optional
 * Verify the solution against a set of random inputs

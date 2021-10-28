@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/SourceInstructions/SourceInstruction.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Instructions/Add_Instruction.tscn" type="PackedScene" id=2]
+
+[node name="Add_SourceInstruction" instance=ExtResource( 1 )]
+m_psInstruction = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 1, 0.5 )
+
+[node name="Label" parent="." index="1"]
+margin_right = 64.0
+text = "ADD"
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 32, 16 )
+
+[node name="Sprite" parent="Preview" index="0"]
+scale = Vector2( 1, 0.5 )
+
+[node name="Label" parent="Preview" index="1"]
+margin_right = 64.0
+text = "ADD"
