@@ -30,6 +30,9 @@ func _ready():
 		m_nMemoryFloor.add_child(nBox)
 		m_nAddressMarkers.get_child(iMemory).visible = true
 
+func _get_description(_iLevel: int) -> String:
+	return ""
+
 func _get_inputs(_iLevel: int) -> Array:
 	var aiInputs: Array = []
 	match _iLevel:
@@ -46,8 +49,12 @@ func _get_inputs(_iLevel: int) -> Array:
 				aiInputs.append(randi() % 20)
 			for __ in range(4):
 				aiInputs.insert(randi() % aiInputs.size(), 0)
+		8:
+			for __ in range(4):
+				aiInputs.append(randi() % 3 - 1)
 		_:
 			print_debug("Level is not implemented")
+			# gonna move this to the level description later
 	return aiInputs
 
 func _get_memory_data(_iLevel: int) -> Array:
@@ -55,8 +62,6 @@ func _get_memory_data(_iLevel: int) -> Array:
 	match _iLevel:
 		3:
 			aiMemory = [0, 1, 2, 3, 4, 5]
-		4, 6:
+		4, 6, 8:
 			aiMemory = [69, 69, 69]
-		_:
-			print_debug("Level is not implemented")
 	return aiMemory

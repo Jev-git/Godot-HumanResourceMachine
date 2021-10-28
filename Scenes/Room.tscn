@@ -21,7 +21,7 @@
 
 [node name="DataLoader" type="Node2D" parent="."]
 script = ExtResource( 8 )
-m_iCurrentLevel = 7
+m_iCurrentLevel = 8
 m_psBox = ExtResource( 7 )
 
 [node name="RunButton" type="Button" parent="."]

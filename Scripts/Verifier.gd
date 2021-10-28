@@ -51,6 +51,13 @@ func is_correct_solution(_aiOutputs: Array) -> bool:
 						else:
 							return false
 					iInput += 1
+		8:
+			if aiInputs.size() != _aiOutputs.size():
+				return false
+			else:
+				for iBox in range(aiInputs.size()):
+					if aiInputs[iBox] * 3 != _aiOutputs[iBox]:
+						return false
 		_:
 			print_debug("Level is not implemented")
 	return true

@@ -1,6 +1,6 @@
 # Doing
 * Add a level description node and according descriptions to the data loader node
-* Level 8: inputs random 4, output triple each input
+* Level 9: random 4, 4 zeros, output only zeros
 # Time range
 Sept 20th - Oct 4th (2.5 weeks)
 # MVP
