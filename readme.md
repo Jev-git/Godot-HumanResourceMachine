@@ -1,5 +1,5 @@
 # Doing
-* Copy from
+* Add memory address to the floor
 # Time range
 Sept 20th - Oct 4th (2.5 weeks)
 # MVP
@@ -10,7 +10,7 @@ Sept 20th - Oct 4th (2.5 weeks)
     * ~~Inbox~~
     * ~~Outbox~~
     * ~~Jump~~
-    * Copyfrom
+    * ~~Copyfrom~~
     * Copyto
     * Add
     * Sub

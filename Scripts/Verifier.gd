@@ -18,6 +18,6 @@ func is_correct_solution(_aiOutputs: Array) -> bool:
 			if _aiOutputs.size() != 3:
 				return false
 			else:
-				if _aiOutputs[0] != 4 or _aiOutputs[1] != 2 or _aiOutputs[2] == 0:
+				if _aiOutputs[0] != 4 or _aiOutputs[1] != 2 or _aiOutputs[2] != 0:
 					return false
 	return true

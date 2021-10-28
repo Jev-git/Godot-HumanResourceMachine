@@ -84,7 +84,7 @@ func _add_instruction(_psInstruction: PackedScene):
 	m_nInstructions.move_child(nInstruction, _get_instruction_index_base_on_mouse_pos())
 	if nInstruction.m_bHasJumpTarget:
 		_add_jump_instruction_to(nInstruction)
-	
+
 func _add_jump_instruction_to(_nInstruction: Instruction):
 	var nInstruction: Instruction = m_psJumpTargetInstruction.instance()
 	nInstruction.connect("started_dragging", self, "_on_instruction_started_dragging")
@@ -97,7 +97,10 @@ func _add_jump_instruction_to(_nInstruction: Instruction):
 
 func _rearrange_all_instructions():
 	for iInstruction in range(m_nInstructions.get_child_count()):
-		m_nInstructions.get_child(iInstruction).position = Vector2(0, iInstruction * ConfigData.DISTANCE_BETWEEN_INSTRUCTIONS)
+		var nInstruction: Instruction = m_nInstructions.get_child(iInstruction)
+		nInstruction.position = Vector2(0, iInstruction * ConfigData.DISTANCE_BETWEEN_INSTRUCTIONS)
+		if nInstruction.m_bHasMemoryAddressPicker:
+			nInstruction.m_nMemoryAddressPicker.recalculate_rect()
 
 func _get_instruction_index_base_on_mouse_pos() -> int:
 	return int((get_global_mouse_position().y - m_nInstructions.global_position.y) / ConfigData.DISTANCE_BETWEEN_INSTRUCTIONS)

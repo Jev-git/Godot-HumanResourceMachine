@@ -1,5 +1,7 @@
 extends Node2D
 
+export var m_psBox: PackedScene
+
 onready var m_nInstructions: Node2D = NodeUtil.get_first_node_in_group("Instructions")
 onready var m_nLeftConveyor: Node2D = NodeUtil.get_first_node_in_group("LeftConveyor")
 onready var m_nRightConveyor: Node2D = NodeUtil.get_first_node_in_group("RightConveyor")
@@ -31,9 +33,9 @@ func execute():
 		var nInstruction: Instruction = m_nInstructions.get_child(m_iInstructionPointerIndex)
 		match nInstruction.m_iInstructionType:
 			InstructionType.INSTRUCTION_TYPE.INBOX:
-				if (execute_inbox()): return
+				if (_execute_inbox()): return
 			InstructionType.INSTRUCTION_TYPE.OUTBOX:
-				if (execute_outbox()): return
+				if (_execute_outbox()): return
 				elif m_nVerifier.is_correct_solution(m_aiOutputs):
 					emit_signal("execution_finished", true)
 					return
@@ -41,6 +43,9 @@ func execute():
 				_set_instruction_pointer_index(m_iInstructionPointerIndex + 1)
 				_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index() - 1)
 				continue
+			InstructionType.INSTRUCTION_TYPE.COPY_FROM:
+				var nMAP: MemoryAddressPicker = nInstruction.m_nMemoryAddressPicker
+				_execute_copy_from(nMAP.m_iMemoryAddress)
 		
 		yield(get_tree().create_timer(0.5), "timeout")
 		_set_instruction_pointer_index(m_iInstructionPointerIndex + 1)
@@ -51,7 +56,7 @@ func _set_instruction_pointer_index(_iIndex: int):
 	m_iInstructionPointerIndex = _iIndex
 	m_nInstructionPointer.position.y = _iIndex * ConfigData.DISTANCE_BETWEEN_INSTRUCTIONS
 
-func execute_inbox():
+func _execute_inbox() -> bool:
 	if m_nLeftConveyor.get_child_count() == 0:
 		emit_signal("error", "Input empty")
 		return true
@@ -66,7 +71,7 @@ func execute_inbox():
 			m_nLeftConveyor.get_child(iBox).position.y = iBox * ConfigData.DISTANCE_BETWEEN_BOXES
 		return false
 
-func execute_outbox():
+func _execute_outbox() -> bool:
 	if m_nPlayerHoldingBox.get_child_count() == 0:
 		emit_signal("error", "Can't output nothing")
 		return true
@@ -78,3 +83,11 @@ func execute_outbox():
 		for iBox in range(m_nRightConveyor.get_child_count()):
 			m_nRightConveyor.get_child(iBox).position.y = (m_nRightConveyor.get_child_count() - iBox - 1) * ConfigData.DISTANCE_BETWEEN_BOXES
 		return false
+
+func _execute_copy_from(_iAddress: int) -> bool:
+	while m_nPlayerHoldingBox.get_child_count() != 0:
+		m_nPlayerHoldingBox.get_child(0).queue_free()
+	var nBox: Box = m_psBox.instance()
+	nBox.set_value(m_nMemoryFloor.get_child(_iAddress).m_iValue)
+	m_nPlayerHoldingBox.add_child(nBox)
+	return false

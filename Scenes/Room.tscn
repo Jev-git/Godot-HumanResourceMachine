@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/SourceInstructions/Outbox_SourceInstruction.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -12,11 +12,13 @@
 [ext_resource path="res://Scenes/SourceInstructions/Jump_SourceInstruction.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Instructions/JumpTarget_Instruction.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/LeftConveyor.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/SourceInstructions/CopyFrom_SourceInstruction.tscn" type="PackedScene" id=13]
 
 [node name="Room" type="Node2D"]
 
 [node name="DataLoader" type="Node2D" parent="."]
 script = ExtResource( 8 )
+m_iCurrentLevel = 3
 m_psBox = ExtResource( 7 )
 
 [node name="RunButton" type="Button" parent="."]
@@ -32,6 +34,7 @@ __meta__ = {
 
 [node name="Interpreter" type="Node2D" parent="."]
 script = ExtResource( 6 )
+m_psBox = ExtResource( 7 )
 
 [node name="Verifier" type="Node2D" parent="."]
 script = ExtResource( 9 )
@@ -65,7 +68,7 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="SourceInstructions" type="Node2D" parent="."]
-position = Vector2( 304, 16 )
+position = Vector2( 288, 16 )
 
 [node name="Inbox_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 4 )]
 
@@ -74,6 +77,9 @@ position = Vector2( 0, 48 )
 
 [node name="Jump_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 10 )]
 position = Vector2( 0, 96 )
+
+[node name="CopyFrom_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 13 )]
+position = Vector2( 0, 144 )
 
 [node name="Floor" type="Node2D" parent="."]
 position = Vector2( 0, 384 )
