@@ -1,5 +1,5 @@
 # Doing
-* Add memory address to the floor
+* Copy to
 # Time range
 Sept 20th - Oct 4th (2.5 weeks)
 # MVP

@@ -123,6 +123,160 @@ centered = false
 "MemoryFloor",
 ]]
 
+[node name="AddressMarkers" type="Node2D" parent="Floor/MemoryFloor"]
+
+[node name="Label" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_right = 16.0
+margin_bottom = 16.0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 64.0
+margin_right = 80.0
+margin_bottom = 16.0
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 128.0
+margin_right = 144.0
+margin_bottom = 16.0
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 192.0
+margin_right = 208.0
+margin_bottom = 16.0
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_top = 64.0
+margin_right = 16.0
+margin_bottom = 80.0
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 80.0
+margin_bottom = 80.0
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 128.0
+margin_top = 64.0
+margin_right = 144.0
+margin_bottom = 80.0
+text = "6"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label8" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 192.0
+margin_top = 64.0
+margin_right = 208.0
+margin_bottom = 80.0
+text = "7"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label9" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_top = 128.0
+margin_right = 16.0
+margin_bottom = 144.0
+text = "8"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label10" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 64.0
+margin_top = 128.0
+margin_right = 80.0
+margin_bottom = 144.0
+text = "9"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label11" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 144.0
+margin_bottom = 144.0
+text = "10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label12" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 192.0
+margin_top = 128.0
+margin_right = 208.0
+margin_bottom = 144.0
+text = "11"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label13" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_top = 192.0
+margin_right = 16.0
+margin_bottom = 208.0
+text = "12"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label14" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 64.0
+margin_top = 192.0
+margin_right = 80.0
+margin_bottom = 208.0
+text = "13"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label15" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 128.0
+margin_top = 192.0
+margin_right = 144.0
+margin_bottom = 208.0
+text = "14"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label16" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+margin_left = 192.0
+margin_top = 192.0
+margin_right = 208.0
+margin_bottom = 208.0
+text = "15q"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Player" type="Node2D" parent="."]
 position = Vector2( 160, 384 )
 
