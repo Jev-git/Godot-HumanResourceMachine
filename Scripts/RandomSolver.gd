@@ -9,6 +9,7 @@ onready var m_nInstructions: Node2D = NodeUtil.get_first_node_in_group("Instruct
 var m_aiOriginalInputs: Array
 var m_aiInputs: Array
 var m_aiOutputs: Array
+var m_aiMemory: Array
 var m_bIsHoldingValue: bool
 var m_iHoldingValue: int
 
@@ -57,4 +58,13 @@ func output_holding_value() -> bool:
 	else:
 		m_aiOutputs.append(m_iHoldingValue)
 		m_bIsHoldingValue = false
+		return false
+
+func copy_value_from_memory(_iMemoryAddress: int) -> bool:
+	if _iMemoryAddress > m_aiMemory.size() - 1:
+		print_debug("Error: Copy from invalide memory address")
+		return true
+	else:
+		m_iHoldingValue = m_aiMemory[_iMemoryAddress]
+		m_bIsHoldingValue = true
 		return false

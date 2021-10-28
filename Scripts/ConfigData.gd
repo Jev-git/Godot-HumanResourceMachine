@@ -1,0 +1,4 @@
+extends Node
+
+const DISTANCE_BETWEEN_BOXES: int = 64
+const DISTANCE_BETWEEN_INSTRUCTIONS: int = 48

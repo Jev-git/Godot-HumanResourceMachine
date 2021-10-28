@@ -13,14 +13,6 @@ onready var m_nHoldingBox: Box = null
 
 var m_aiInputs: Array
 
-func _ready():
-	m_aiInputs = m_nVerifier.get_random_inputs(1)
-	for iInput in range(m_aiInputs.size()):
-		var nBox: Box = m_psBox.instance()
-		nBox.set_value(m_aiInputs[iInput])
-		nBox.position.y = iInput * m_iDistanceBetweenBoxes
-		m_nLeftConveyor.add_child(nBox)
-
 func execute():
 	for nInstruction in m_nInstructions.get_children():
 		match nInstruction.m_iInstructionType:

@@ -1,7 +1,6 @@
 extends Node2D
 
 export var m_psJumpTargetInstruction: PackedScene
-export var m_iSpaceBetweenInstructions: int = 48
 export var m_iJumpDisplayLeftMargin: int = -4
 
 onready var m_nSourceInstructions: Node2D = get_parent().get_node("SourceInstructions")
@@ -44,9 +43,9 @@ func _process(delta):
 			for iInstruction in range(m_nInstructions.get_child_count()):
 				var nInstruction = m_nInstructions.get_child(iInstruction)
 				if iInstruction < _get_instruction_index_base_on_mouse_pos():
-					nInstruction.position.y = iInstruction * m_iSpaceBetweenInstructions
+					nInstruction.position.y = iInstruction * ConfigData.DISTANCE_BETWEEN_INSTRUCTIONS
 				else:
-					nInstruction.position.y = (iInstruction + 1) * m_iSpaceBetweenInstructions
+					nInstruction.position.y = (iInstruction + 1) * ConfigData.DISTANCE_BETWEEN_INSTRUCTIONS
 
 func _on_source_instruction_started_dragging(_nSourceInstruction: SourceInstruction):
 	m_nDraggingSourceInstruction = _nSourceInstruction
@@ -98,7 +97,7 @@ func _add_jump_instruction_to(_nInstruction: Instruction):
 
 func _rearrange_all_instructions():
 	for iInstruction in range(m_nInstructions.get_child_count()):
-		m_nInstructions.get_child(iInstruction).position = Vector2(0, iInstruction * m_iSpaceBetweenInstructions)
+		m_nInstructions.get_child(iInstruction).position = Vector2(0, iInstruction * ConfigData.DISTANCE_BETWEEN_INSTRUCTIONS)
 
 func _get_instruction_index_base_on_mouse_pos() -> int:
-	return int((get_global_mouse_position().y - m_nInstructions.global_position.y) / m_iSpaceBetweenInstructions)
+	return int((get_global_mouse_position().y - m_nInstructions.global_position.y) / ConfigData.DISTANCE_BETWEEN_INSTRUCTIONS)

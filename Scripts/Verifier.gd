@@ -1,22 +1,23 @@
 extends Node2D
 class_name Verifier
 
-func get_random_inputs(_iLevel: int) -> Array:
-	randomize()
-	var aiInputs: Array = []
-	match _iLevel:
-		1:
-			for __ in range(3):
-				aiInputs.append(randi() % 10)
-	return aiInputs
+onready var m_nDataLoader: Node2D = get_parent().get_node("DataLoader")
+onready var m_nLeftConveyor: Node2D = NodeUtil.get_first_node_in_group("LeftConveyor")
 
-func is_correct_solution(_iLevel: int, _aiInputs: Array, _aiOutputs: Array) -> bool:
-	match _iLevel:
-		1:
-			if _aiInputs.size() != _aiOutputs.size():
+func is_correct_solution(_aiOutputs: Array) -> bool:
+	var aiInputs: Array = m_nLeftConveyor.m_aiInitialInputs
+	match m_nDataLoader.m_iCurrentLevel:
+		1, 2:
+			if aiInputs.size() != _aiOutputs.size():
 				return false
 			else:
-				for iBox in range(_aiInputs.size()):
-					if _aiInputs[iBox] != _aiOutputs[iBox]:
+				for iBox in range(aiInputs.size()):
+					if aiInputs[iBox] != _aiOutputs[iBox]:
 						return false
+		3:
+			if _aiOutputs.size() != 3:
+				return false
+			else:
+				if _aiOutputs[0] != 4 or _aiOutputs[1] != 2 or _aiOutputs[2] == 0:
+					return false
 	return true
