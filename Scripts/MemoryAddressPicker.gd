@@ -19,11 +19,11 @@ func _ready():
 	for nBox in m_nMemoryFloor.get_children():
 		nBox.connect("pressed", self, "_on_box_selected")
 
-func _on_box_selected(_nBox: Box):
+func _on_box_selected(_iMemoryAddress: int):
 	if m_bIsPicking:
 		m_bIsPicking = false
 		m_nSprite.set_scale(m_nSprite.scale - Vector2(m_fScaleChange, m_fScaleChange))
-		_set_memory_address(_nBox.m_iValue)
+		_set_memory_address(_iMemoryAddress)
 
 func _input(event):
 	if event is InputEventMouseButton:

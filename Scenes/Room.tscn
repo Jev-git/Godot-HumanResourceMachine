@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/SourceInstructions/Outbox_SourceInstruction.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -13,12 +13,13 @@
 [ext_resource path="res://Scenes/Instructions/JumpTarget_Instruction.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/LeftConveyor.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/SourceInstructions/CopyFrom_SourceInstruction.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/SourceInstructions/CopyTo_SourceInstruction.tscn" type="PackedScene" id=14]
 
 [node name="Room" type="Node2D"]
 
 [node name="DataLoader" type="Node2D" parent="."]
 script = ExtResource( 8 )
-m_iCurrentLevel = 3
+m_iCurrentLevel = 4
 m_psBox = ExtResource( 7 )
 
 [node name="RunButton" type="Button" parent="."]
@@ -81,6 +82,9 @@ position = Vector2( 0, 96 )
 [node name="CopyFrom_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 13 )]
 position = Vector2( 0, 144 )
 
+[node name="CopyTo_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 14 )]
+position = Vector2( 0, 192 )
+
 [node name="Floor" type="Node2D" parent="."]
 position = Vector2( 0, 384 )
 
@@ -126,6 +130,7 @@ centered = false
 [node name="AddressMarkers" type="Node2D" parent="Floor/MemoryFloor"]
 
 [node name="Label" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_right = 16.0
 margin_bottom = 16.0
 text = "0"
@@ -134,6 +139,7 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 64.0
 margin_right = 80.0
 margin_bottom = 16.0
@@ -143,6 +149,7 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 128.0
 margin_right = 144.0
 margin_bottom = 16.0
@@ -152,6 +159,7 @@ __meta__ = {
 }
 
 [node name="Label4" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 192.0
 margin_right = 208.0
 margin_bottom = 16.0
@@ -161,6 +169,7 @@ __meta__ = {
 }
 
 [node name="Label5" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_top = 64.0
 margin_right = 16.0
 margin_bottom = 80.0
@@ -170,6 +179,7 @@ __meta__ = {
 }
 
 [node name="Label6" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 64.0
 margin_top = 64.0
 margin_right = 80.0
@@ -180,6 +190,7 @@ __meta__ = {
 }
 
 [node name="Label7" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 128.0
 margin_top = 64.0
 margin_right = 144.0
@@ -190,6 +201,7 @@ __meta__ = {
 }
 
 [node name="Label8" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 192.0
 margin_top = 64.0
 margin_right = 208.0
@@ -200,6 +212,7 @@ __meta__ = {
 }
 
 [node name="Label9" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_top = 128.0
 margin_right = 16.0
 margin_bottom = 144.0
@@ -209,6 +222,7 @@ __meta__ = {
 }
 
 [node name="Label10" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 64.0
 margin_top = 128.0
 margin_right = 80.0
@@ -219,6 +233,7 @@ __meta__ = {
 }
 
 [node name="Label11" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 128.0
 margin_top = 128.0
 margin_right = 144.0
@@ -229,6 +244,7 @@ __meta__ = {
 }
 
 [node name="Label12" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 192.0
 margin_top = 128.0
 margin_right = 208.0
@@ -239,6 +255,7 @@ __meta__ = {
 }
 
 [node name="Label13" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_top = 192.0
 margin_right = 16.0
 margin_bottom = 208.0
@@ -248,6 +265,7 @@ __meta__ = {
 }
 
 [node name="Label14" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 64.0
 margin_top = 192.0
 margin_right = 80.0
@@ -258,6 +276,7 @@ __meta__ = {
 }
 
 [node name="Label15" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 128.0
 margin_top = 192.0
 margin_right = 144.0
@@ -268,6 +287,7 @@ __meta__ = {
 }
 
 [node name="Label16" type="Label" parent="Floor/MemoryFloor/AddressMarkers"]
+visible = false
 margin_left = 192.0
 margin_top = 192.0
 margin_right = 208.0

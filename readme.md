@@ -1,5 +1,5 @@
 # Doing
-* Copy to
+* Level 5: inputs: random 6, outputs: sum of each pair
 # Time range
 Sept 20th - Oct 4th (2.5 weeks)
 # MVP
@@ -11,7 +11,7 @@ Sept 20th - Oct 4th (2.5 weeks)
     * ~~Outbox~~
     * ~~Jump~~
     * ~~Copyfrom~~
-    * Copyto
+    * ~~Copyto~~
     * Add
     * Sub
 # Optional

@@ -20,4 +20,11 @@ func is_correct_solution(_aiOutputs: Array) -> bool:
 			else:
 				if _aiOutputs[0] != 4 or _aiOutputs[1] != 2 or _aiOutputs[2] != 0:
 					return false
+		4:
+			if aiInputs.size() != _aiOutputs.size():
+				return false
+			else:
+				for iBox in range(0, aiInputs.size(), 2):
+					if aiInputs[iBox] != _aiOutputs[iBox + 1] or aiInputs[iBox + 1] != _aiOutputs[iBox]:
+						return false
 	return true

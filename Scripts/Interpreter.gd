@@ -44,8 +44,10 @@ func execute():
 				_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index() - 1)
 				continue
 			InstructionType.INSTRUCTION_TYPE.COPY_FROM:
-				var nMAP: MemoryAddressPicker = nInstruction.m_nMemoryAddressPicker
-				_execute_copy_from(nMAP.m_iMemoryAddress)
+				_execute_copy_from(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)
+			InstructionType.INSTRUCTION_TYPE.COPY_TO:
+				if (_execute_copy_to(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)):
+					return
 		
 		yield(get_tree().create_timer(0.5), "timeout")
 		_set_instruction_pointer_index(m_iInstructionPointerIndex + 1)
@@ -85,9 +87,20 @@ func _execute_outbox() -> bool:
 		return false
 
 func _execute_copy_from(_iAddress: int) -> bool:
-	while m_nPlayerHoldingBox.get_child_count() != 0:
+	if m_nPlayerHoldingBox.get_child_count() == 1:
 		m_nPlayerHoldingBox.get_child(0).queue_free()
 	var nBox: Box = m_psBox.instance()
 	nBox.set_value(m_nMemoryFloor.get_child(_iAddress).m_iValue)
 	m_nPlayerHoldingBox.add_child(nBox)
+	return false
+
+func _execute_copy_to(_iAddress: int) -> bool:
+	if m_nMemoryFloor.get_child_count() < _iAddress:
+		emit_signal("error", "Memory address out of bound")
+		return true
+	elif m_nPlayerHoldingBox.get_child_count() == 0:
+		emit_signal("error", "Nothing to write")
+		return true
+	else:
+		m_nMemoryFloor.get_child(_iAddress).set_value(m_nPlayerHoldingBox.get_child(0).m_iValue)
 	return false

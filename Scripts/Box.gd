@@ -1,9 +1,10 @@
 extends Area2D
 class_name Box
 
+var m_iMemoryAddress: int
 var m_iValue: int
 
-signal pressed(_nSelf)
+signal pressed(_iMemoryAddress)
 
 func set_value(_iValue: int):
 	m_iValue = _iValue
@@ -12,4 +13,4 @@ func set_value(_iValue: int):
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			emit_signal("pressed", self)
+			emit_signal("pressed", m_iMemoryAddress)
