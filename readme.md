@@ -1,5 +1,5 @@
 # Time range
-Sept 20th - Oct 4th (2.5 weeks)
+Sept 20th - Sept 29th (1.5 weeks)
 # MVP
 * ~~Draggable and dropable instructions~~
 * ~~Sequencial execution~~

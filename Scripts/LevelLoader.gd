@@ -53,6 +53,29 @@ func _ready():
 		m_nMemoryFloor.add_child(nBox)
 		m_nAddressMarkers.get_child(iMemory).visible = true
 
+func _get_description(_iLevel: int) -> String:
+	match _iLevel:
+		1:
+			return "Send all boxes from the left to the right"
+		2:
+			return "Send all boxes from the left to the right, but you now can use JUMP!!!"
+		3:
+			return "Output: [4, 2, 0]"
+		4:
+			return "Output each pair of boxes in reverse order"
+		6:
+			return "Output the sum of each pair of boxes from inputs"
+		7:
+			return "Output all NON-zero boxes"
+		8:
+			return "Triple each input value and send them to the output"
+		9:
+			return "Output all zero boxes"
+		10:
+			return "Multiply each inbox by 8, and send them to the outbox"
+		_:
+			return "This level is not implemented yet"
+
 func _get_source_instructions(_iLevel: int) -> Array:
 	var aiSourceInstructions: Array = []
 	match _iLevel:
@@ -81,7 +104,7 @@ func _get_source_instructions(_iLevel: int) -> Array:
 				InstructionType.INSTRUCTION_TYPE.COPY_TO,
 				InstructionType.INSTRUCTION_TYPE.JUMP
 			]
-		6, 8:
+		6, 8, 10:
 			aiSourceInstructions = [
 				InstructionType.INSTRUCTION_TYPE.INBOX,
 				InstructionType.INSTRUCTION_TYPE.OUTBOX,
@@ -101,27 +124,6 @@ func _get_source_instructions(_iLevel: int) -> Array:
 			]
 	return aiSourceInstructions
 
-func _get_description(_iLevel: int) -> String:
-	match _iLevel:
-		1:
-			return "Send all boxes from the left to the right"
-		2:
-			return "Send all boxes from the left to the right, but you now can use JUMP!!!"
-		3:
-			return "Output: [4, 2, 0]"
-		4:
-			return "Output each pair of boxes in reverse order"
-		6:
-			return "Output the sum of each pair of boxes from inputs"
-		7:
-			return "Output all NON-zero boxes"
-		8:
-			return "Triple each input value and send them to the output"
-		9:
-			return "Output all zero boxes"
-		_:
-			return "This level is not implemented yet"
-
 func _get_inputs(_iLevel: int) -> Array:
 	var aiInputs: Array = []
 	match _iLevel:
@@ -138,9 +140,9 @@ func _get_inputs(_iLevel: int) -> Array:
 				aiInputs.append(randi() % 20)
 			for __ in range(4):
 				aiInputs.insert(randi() % aiInputs.size(), 0)
-		8:
+		8, 10:
 			for __ in range(4):
-				aiInputs.append(randi() % 3 - 1)
+				aiInputs.append(randi() % 7 - 3)
 	return aiInputs
 
 func _get_desired_outputs(_iLevel: int, _aiInputs: Array) -> Array:
@@ -172,6 +174,9 @@ func _get_desired_outputs(_iLevel: int, _aiInputs: Array) -> Array:
 			for iInputValue in _aiInputs:
 				if iInputValue == 0:
 					aiOutputs.append(iInputValue)
+		10:
+			for iInputValue in _aiInputs:
+				aiOutputs.append(iInputValue * 8)
 	return aiOutputs
 
 func _get_memory_data(_iLevel: int) -> Array:
@@ -179,6 +184,6 @@ func _get_memory_data(_iLevel: int) -> Array:
 	match _iLevel:
 		3:
 			aiMemory = [0, 1, 2, 3, 4, 5]
-		4, 6, 8:
+		4, 6, 8, 10:
 			aiMemory = [69, 69, 69]
 	return aiMemory
