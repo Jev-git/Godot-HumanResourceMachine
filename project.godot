@@ -29,29 +29,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/RandomSolver.gd"
 }, {
-"base": "Node2D",
-"class": "Room",
-"language": "GDScript",
-"path": "res://Scripts/DataLoader.gd"
-}, {
 "base": "Area2D",
 "class": "SourceInstruction",
 "language": "GDScript",
 "path": "res://Scripts/Instructions/SourceInstruction.gd"
-}, {
-"base": "Node2D",
-"class": "Verifier",
-"language": "GDScript",
-"path": "res://Scripts/Verifier.gd"
 } ]
 _global_script_class_icons={
 "Box": "",
 "Instruction": "",
 "MemoryAddressPicker": "",
 "RandomSolver": "",
-"Room": "",
-"SourceInstruction": "",
-"Verifier": ""
+"SourceInstruction": ""
 }
 
 [application]

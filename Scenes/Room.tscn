@@ -1,28 +1,31 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Scenes/SourceInstructions/Outbox_SourceInstruction.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/SolutionArea.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/SourceInstructions/Inbox_SourceInstruction.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/RunButton.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Interpreter.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Box.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scripts/DataLoader.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Verifier.gd" type="Script" id=9]
-[ext_resource path="res://Scenes/SourceInstructions/Jump_SourceInstruction.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/LevelLoader.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Instructions/JumpTarget_Instruction.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/LeftConveyor.gd" type="Script" id=12]
-[ext_resource path="res://Scenes/SourceInstructions/CopyFrom_SourceInstruction.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/SourceInstructions/CopyTo_SourceInstruction.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/SourceInstructions/Add_SourceInstruction.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scenes/SourceInstructions/JumpIfZero_SourceInstruction.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scripts/RightConveyor.gd" type="Script" id=17]
 
 [node name="Room" type="Node2D"]
 
-[node name="DataLoader" type="Node2D" parent="."]
+[node name="LevelLoader" type="Node2D" parent="."]
 script = ExtResource( 8 )
-m_iCurrentLevel = 8
+m_iCurrentLevel = 10
 m_psBox = ExtResource( 7 )
+
+[node name="LevelDescription" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 368.0
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RunButton" type="Button" parent="."]
 margin_left = 400.0
@@ -38,9 +41,6 @@ __meta__ = {
 [node name="Interpreter" type="Node2D" parent="."]
 script = ExtResource( 6 )
 m_psBox = ExtResource( 7 )
-
-[node name="Verifier" type="Node2D" parent="."]
-script = ExtResource( 9 )
 
 [node name="SolutionArea" type="Node2D" parent="."]
 position = Vector2( 400, 16 )
@@ -70,28 +70,10 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 centered = false
 
-[node name="SourceInstructions" type="Node2D" parent="."]
+[node name="SourceInstructions" type="Node2D" parent="." groups=[
+"SourceInstructions",
+]]
 position = Vector2( 272, 16 )
-
-[node name="Inbox_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 4 )]
-
-[node name="Outbox_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 1 )]
-position = Vector2( 0, 48 )
-
-[node name="Jump_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 10 )]
-position = Vector2( 0, 96 )
-
-[node name="CopyFrom_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 13 )]
-position = Vector2( 0, 144 )
-
-[node name="CopyTo_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 14 )]
-position = Vector2( 0, 192 )
-
-[node name="Add_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 15 )]
-position = Vector2( 0, 240 )
-
-[node name="JumpIfZero_SourceInstruction" parent="SourceInstructions" instance=ExtResource( 16 )]
-position = Vector2( 0, 288 )
 
 [node name="Floor" type="Node2D" parent="."]
 position = Vector2( 0, 384 )
@@ -121,6 +103,7 @@ centered = false
 [node name="Outputs" type="Node2D" parent="Floor/RightConveyor" groups=[
 "RightConveyor",
 ]]
+script = ExtResource( 17 )
 
 [node name="MemoryFloor" type="Node2D" parent="Floor"]
 position = Vector2( 64, 128 )

@@ -8,7 +8,6 @@ onready var m_nRightConveyor: Node2D = NodeUtil.get_first_node_in_group("RightCo
 onready var m_nMemoryFloor: Node2D = NodeUtil.get_first_node_in_group("MemoryFloor")
 onready var m_nPlayerHoldingBox: Node2D = NodeUtil.get_first_node_in_group("PlayerHoldingBox")
 
-onready var m_nVerifier: Verifier = get_parent().get_node("Verifier")
 onready var m_aiOutputs: Array = []
 
 onready var m_nInstructionPointer: Node2D = NodeUtil.get_first_node_in_group("InstructionPointer")
@@ -38,12 +37,9 @@ func execute():
 			InstructionType.INSTRUCTION_TYPE.OUTBOX:
 				if (_execute_outbox()):
 					return
-				elif m_nVerifier.is_correct_solution(m_aiOutputs):
-					emit_signal("execution_finished", true)
-					return
 			InstructionType.INSTRUCTION_TYPE.JUMP:
 				_set_instruction_pointer_index(m_iInstructionPointerIndex + 1)
-				_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index() )
+				_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index())
 				continue
 			InstructionType.INSTRUCTION_TYPE.COPY_FROM:
 				if (_execute_copy_from(nInstruction.m_nMemoryAddressPicker.m_iMemoryAddress)):
@@ -63,11 +59,15 @@ func execute():
 					if iHoldingValue == 0:
 						_set_instruction_pointer_index(nInstruction.m_nJumpTarget.get_index())
 						continue
+			
+		if m_aiOutputs.size() == m_nRightConveyor.m_aiDesiredOutputs.size() and m_nLeftConveyor.get_child_count() == 0:
+			emit_signal("execution_finished", m_aiOutputs == m_nRightConveyor.m_aiDesiredOutputs)
+			return
 		
 		yield(get_tree().create_timer(0.5), "timeout")
 		_set_instruction_pointer_index(m_iInstructionPointerIndex + 1)
 		yield(get_tree().create_timer(0.5), "timeout")
-	emit_signal("execution_finished", m_nVerifier.is_correct_solution(m_aiOutputs))
+	emit_signal("execution_finished", m_aiOutputs == m_nRightConveyor.m_aiDesiredOutputs)
 
 func _set_instruction_pointer_index(_iIndex: int):
 	m_iInstructionPointerIndex = _iIndex
